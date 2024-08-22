@@ -1,0 +1,6 @@
+@Curriculum_Vitae_Project_HostAddress = http://localhost:5041
+
+GET {{Curriculum_Vitae_Project_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
