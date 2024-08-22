@@ -25,7 +25,13 @@ builder.Services.AddSingleton<AuthorInputType>();
 builder.Services.AddSingleton<AppMutation>();
 builder.Services.AddSingleton<AppSchema>();
 
-builder.Services.AddSingleton<IAuthorService, AuthorService>();
+builder.Services.AddTransient<IAuthorService, AuthorService>();
+
+//Adding the AppSchema through the HotChocolate package
+builder.Services
+	.AddGraphQLServer()
+	.AddQueryType<Query>(); 
+
 
 //Database
 builder.Services.AddDbContext<DataContext>(options =>
@@ -45,8 +51,8 @@ app.UseGraphQLPlayground();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
+app.UseAuthorization();
 
 app.MapGraphQL("/graphql");
 
